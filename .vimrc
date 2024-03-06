@@ -4,7 +4,7 @@ filetype plugin indent on     " Enable filetype detection, plugins, and indentat
 syntax on                     " Enable syntax highlighting
 set undofile					" Remember undo history
 set undodir=~/.vim/undodir
-set foldmethod=syntax			" Enable folding based on indent
+set foldmethod=manual
 set foldlevelstart=10
 set foldnestmax=3
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif		" Enable persistent cursor postition
@@ -21,6 +21,13 @@ autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd l
 
 
+" Automatically write structure for C++ class files
+autocmd BufNewFile *.hpp execute 'normal! i#ifndef ' . substitute(toupper(expand('%:t')), '\.', '_', 'g') . '# define ' . substitute(toupper(expand('%:t')), '\.', '_', 'g') . '// Custom class: ' . substitute(expand('%:t'), '\.hpp', '', 'g') .  'xxaclass    ' . substitute(expand('%:t'), '\.hpp', '', 'g') . '{public:// Constructorxxa' . substitute(expand('%:t'), '\.hpp', '', 'g') . '(void);// Copy constructorxxa' . substitute(expand('%:t'), '\.hpp', '', 'g') . '(const ' . substitute(expand('%:t'), '\.hpp', '', 'g') . '& other);// Copy assignment operator overloadxxa' . substitute(expand('%:t'), '\.hpp', '', 'g') . '& operator = (const ' . substitute(expand('%:t'), '\.hpp', '', 'g') . '& other);// Destructorxxa~' . substitute(expand('%:t'), '\.hpp', '', 'g') . '(void);protected:;private:/*_*/;};#endifkkkwlllll'
+
+autocmd BufNewFile *.h execute 'normal! i#ifndef ' . substitute(toupper(expand('%:t')), '\.', '_', 'g') . '# define ' . substitute(toupper(expand('%:t')), '\.', '_', 'g') . '/* Includes */# include <iostream> //input\outputxxa# include <> //xxa/* Custom classes */# include "ClassHeaders/.hpp" //Custom class: xxa/* Functions */// xxa#endifkkkkkkkkkkkwl'
+
+" Automatically write the structure for C++ files
+autocmd BufNewFile *.cpp if expand('%:t') == "main.cpp" | execute 'normal! i#include "main.h"// xxaint    main(void){;}kw' | else | execute 'normal! i#include "../main.h"// Constructorxxa' . substitute(expand('%:t'), '\.cpp', '', 'g') . '::' . substitute(expand('%:t'), '\.cpp', '', 'g') . '(void){std::cout << "' . substitute(expand('%:t'), '\.cpp', '', 'g') . ': creating object\n";}// Copy constructorxxa' . substitute(expand('%:t'), '\.cpp', '', 'g') . '::' . substitute(expand('%:t'), '\.cpp', '', 'g') . '(const ' . substitute(expand('%:t'), '\.cpp', '', 'g') . '& other){std::cout << "' . substitute(expand('%:t'), '\.cpp', '', 'g') . ': copying object\n";*this = other;}// Copy assignment operator overloadxxa' . substitute(expand('%:t'), '\.cpp', '', 'g') . '& ' . substitute(expand('%:t'), '\.cpp', '', 'g') . '::operator = (const ' . substitute(expand('%:t'), '\.cpp', '', 'g') . '& other){std::cout << "' . substitute(expand('%:t'), '\.cpp', '', 'g') . ': copying object (assignement)\n";if (this != &other)/*this->_ = other._*/;return (*this);}// Destructorxxa' . substitute(expand('%:t'), '\.cpp', '', 'g') . '::~' . substitute(expand('%:t'), '\.cpp', '', 'g') . '(void){std::cout << "' . substitute(expand('%:t'), '\.cpp', '', 'g') . ': destroying object\n";}kkkkkkkkwwwwwwwwwll' | endif
 
 
 
@@ -51,11 +58,11 @@ nnoremap ij <Esc>1
 inoremap tg gT
 vnoremap tg gT
 nnoremap tg gT
-nnoremap <leader><leader> :wq<CR>
-inoremap <leader><leader> <Esc>:wq<CR>
-vnoremap <leader><leader> <Esc>:wq<CR>
+nnoremap <leader><leader> :wq
+inoremap <leader><leader> <Esc>:wq
+vnoremap <leader><leader> <Esc>:wq
 nnoremap zm zM
-nnoremap ; :call AppendSemicolon()<CR>
+nnoremap ; :call AppendSemicolon()
 nnoremap j k
 nnoremap k j
 "nnoremap :w :wa 
@@ -69,13 +76,13 @@ function! AppendSemicolon()
 endfunction
 
 " Key mappings (NERDTree) 
-nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <C-n> :NERDTreeToggle
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-nnoremap <silent> > :tabn<CR>
-nnoremap <silent> < :tabp<CR>
+nnoremap <silent> > :tabn
+nnoremap <silent> < :tabp
 
 " C-specific settings
 autocmd FileType c setlocal cindent " Enable C indentation

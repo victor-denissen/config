@@ -133,6 +133,7 @@ alias pipex="cd ~/Documents/git_collection/pipex"
 alias philo="cd ~/Documents/git_collection/philosophers"
 alias mini="cd ~/Documents/git_collection/minishell"
 alias cb="cd ~/Documents/git_collection/Cub3d"
+alias cpp="cd ~/Documents/git_collection/cpp"
 alias t="tere --map Enter:ChangeDirAndExit --map 0:Exit"
 tere() {
 	local result=$(~/tere/tere "$@")
