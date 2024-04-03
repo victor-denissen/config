@@ -4,9 +4,22 @@ filetype plugin indent on     " Enable filetype detection, plugins, and indentat
 syntax on                     " Enable syntax highlighting
 set undofile					" Remember undo history
 set undodir=~/.vim/undodir
-set foldmethod=manual
+set foldmethod=syntax
 set foldlevelstart=10
 set foldnestmax=3
+
+" Toggle between syntax and manual folding mode when pressing zs
+function! ToggleFoldingMode()
+    if &foldmethod == 'syntax'
+        set foldmethod=manual
+    else
+        set foldmethod=syntax
+    endif
+endfunction
+
+nnoremap <silent> zs :call ToggleFoldingMode()<CR>
+
+
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif		" Enable persistent cursor postition
 set wildmenu					" Display command line's tab complete options as a menu
 set noswapfile					" Disable swap file
@@ -19,7 +32,8 @@ set	mouse=a						" Enable mouse to be used
 " Auto Commands
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd l
-
+" Open Fugitive's :Git in a new tab on Vim startup
+"autocmd VimEnter * tabnew | execute 'normal :Git<CR>'
 
 " Automatically write structure for C++ class files
 autocmd BufNewFile *.hpp execute 'normal! i#ifndef ' . substitute(toupper(expand('%:t')), '\.', '_', 'g') . '# define ' . substitute(toupper(expand('%:t')), '\.', '_', 'g') . '// Custom class: ' . substitute(expand('%:t'), '\.hpp', '', 'g') .  'xxaclass    ' . substitute(expand('%:t'), '\.hpp', '', 'g') . '{public:// Constructorxxa' . substitute(expand('%:t'), '\.hpp', '', 'g') . '(void);// Copy constructorxxa' . substitute(expand('%:t'), '\.hpp', '', 'g') . '(const ' . substitute(expand('%:t'), '\.hpp', '', 'g') . '& other);// Copy assignment operator overloadxxa' . substitute(expand('%:t'), '\.hpp', '', 'g') . '& operator = (const ' . substitute(expand('%:t'), '\.hpp', '', 'g') . '& other);// Destructorxxa~' . substitute(expand('%:t'), '\.hpp', '', 'g') . '(void);protected:;private:/*_*/;};#endifkkkwlllll'
@@ -84,6 +98,13 @@ nnoremap <C-l> <C-w>l
 nnoremap <silent> > :tabn
 nnoremap <silent> < :tabp
 
+
+" Key mappings (ALE)
+:nmap ]a :ALENextWrap<CR>
+:nmap [a :ALEPreviousWrap<CR>
+:nmap ]A :ALELast
+:nmap [A :ALEFirst
+
 " C-specific settings
 autocmd FileType c setlocal cindent " Enable C indentation
 
@@ -108,6 +129,7 @@ Plugin 'preservim/nerdcommenter'
 Plugin 'preservim/nerdtree'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'dense-analysis/ale'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

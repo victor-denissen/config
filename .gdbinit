@@ -5,6 +5,10 @@ set detach-on-fork off
 set history save on
 set history size 10000
 set history filename ~/.gdb_history
+
+set logging on
+set	logging file .gdb.txt
+
  
 define par
     set $arr = $arg0
@@ -17,6 +21,13 @@ end
 document par
 print array
 arg0 = array;
+end
+
+define ps
+	print (char *)$arg0
+end
+document ps
+print c++ string cuz gdb cant by default here
 end
 
 define plist
@@ -94,3 +105,8 @@ end
 document re
 reload ~/.gdbinit file
 end
+
+#source ~/peda/peda.py
+#define hook-stop
+#session autosave
+#end
