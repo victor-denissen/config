@@ -8,7 +8,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="robbyrussell" # set by `omz`
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -50,13 +50,11 @@ ZSH_THEME="robbyrussell"
 # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+# under VCS as dirty. This makes repository status check for large repositories # much, much faster.  # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
-# You can set one of the optional three formats:
+# Uncomment the following line if you want to change the command execution time
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
@@ -81,7 +79,7 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
-# Preferred editor for local and remote sessions
+
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
@@ -135,11 +133,13 @@ alias mini="cd ~/Documents/git_collection/minishell"
 alias cb="cd ~/Documents/git_collection/Cub3d"
 alias cpp="cd ~/Documents/git_collection/cpp"
 alias t="tere --map Enter:ChangeDirAndExit --map 0:Exit"
+
 tere() {
 	local result=$(~/tere/tere "$@")
     [ -n "$result" ] && cd -- "$result"
 }
 
+alias cppinit="mkdir src; cd src; mkdir ClassImplements ClassHeaders;cd .."
 
 alias gdb="gdb -x .gdbinit"
 alias clear="clear;pwd;ls"
@@ -148,7 +148,3 @@ alias francinette=/nfs/homes/vdenisse/francinette/tester.sh
 
 alias paco=/nfs/homes/vdenisse/francinette/tester.sh
 alias getlib="rm -rf libft; gcl git@github.com:ace-rake/Libft.git libft ; rm -rf libft/.git"
-
-xrandr -o 2
-sleep 0.5
-xrandr -o 0

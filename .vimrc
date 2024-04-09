@@ -22,7 +22,7 @@ nnoremap <silent> zs :call ToggleFoldingMode()<CR>
 
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif		" Enable persistent cursor postition
 set wildmenu					" Display command line's tab complete options as a menu
-set noswapfile					" Disable swap file
+set noswapfile					" Disable swap file;
 set nobackup
 set nowritebackup
 set autowrite					" Automatically write files before opening another file
@@ -35,14 +35,8 @@ autocmd VimEnter * wincmd l
 " Open Fugitive's :Git in a new tab on Vim startup
 "autocmd VimEnter * tabnew | execute 'normal :Git<CR>'
 
-" Automatically write structure for C++ class files
-autocmd BufNewFile *.hpp execute 'normal! i#ifndef ' . substitute(toupper(expand('%:t')), '\.', '_', 'g') . '# define ' . substitute(toupper(expand('%:t')), '\.', '_', 'g') . '// Custom class: ' . substitute(expand('%:t'), '\.hpp', '', 'g') .  'xxaclass    ' . substitute(expand('%:t'), '\.hpp', '', 'g') . '{public:// Constructorxxa' . substitute(expand('%:t'), '\.hpp', '', 'g') . '(void);// Copy constructorxxa' . substitute(expand('%:t'), '\.hpp', '', 'g') . '(const ' . substitute(expand('%:t'), '\.hpp', '', 'g') . '& other);// Copy assignment operator overloadxxa' . substitute(expand('%:t'), '\.hpp', '', 'g') . '& operator = (const ' . substitute(expand('%:t'), '\.hpp', '', 'g') . '& other);// Destructorxxa~' . substitute(expand('%:t'), '\.hpp', '', 'g') . '(void);protected:;private:/*_*/;};#endifkkkwlllll'
-
-autocmd BufNewFile *.h execute 'normal! i#ifndef ' . substitute(toupper(expand('%:t')), '\.', '_', 'g') . '# define ' . substitute(toupper(expand('%:t')), '\.', '_', 'g') . '/* Includes */# include <iostream> //input\outputxxa# include <> //xxa/* Custom classes */# include "ClassHeaders/.hpp" //Custom class: xxa/* Functions */// xxa#endifkkkkkkkkkkkwl'
-
-" Automatically write the structure for C++ files
-autocmd BufNewFile *.cpp if expand('%:t') == "main.cpp" | execute 'normal! i#include "main.h"// xxaint    main(void){;}kw' | else | execute 'normal! i#include "../main.h"// Constructorxxa' . substitute(expand('%:t'), '\.cpp', '', 'g') . '::' . substitute(expand('%:t'), '\.cpp', '', 'g') . '(void){std::cout << "' . substitute(expand('%:t'), '\.cpp', '', 'g') . ': creating object\n";}// Copy constructorxxa' . substitute(expand('%:t'), '\.cpp', '', 'g') . '::' . substitute(expand('%:t'), '\.cpp', '', 'g') . '(const ' . substitute(expand('%:t'), '\.cpp', '', 'g') . '& other){std::cout << "' . substitute(expand('%:t'), '\.cpp', '', 'g') . ': copying object\n";*this = other;}// Copy assignment operator overloadxxa' . substitute(expand('%:t'), '\.cpp', '', 'g') . '& ' . substitute(expand('%:t'), '\.cpp', '', 'g') . '::operator = (const ' . substitute(expand('%:t'), '\.cpp', '', 'g') . '& other){std::cout << "' . substitute(expand('%:t'), '\.cpp', '', 'g') . ': copying object (assignement)\n";if (this != &other)/*this->_ = other._*/;return (*this);}// Destructorxxa' . substitute(expand('%:t'), '\.cpp', '', 'g') . '::~' . substitute(expand('%:t'), '\.cpp', '', 'g') . '(void){std::cout << "' . substitute(expand('%:t'), '\.cpp', '', 'g') . ': destroying object\n";}kkkkkkkkwwwwwwwwwll' | endif
-
+"template paths
+let g:tmpl_search_paths = ['~/Documents/git_collection/template/templates']
 
 
 " UI settings
@@ -69,20 +63,26 @@ set smarttab                  " Use shiftwidth for tab commands
 inoremap ij <Esc>1
 vnoremap ij <Esc>1
 nnoremap ij <Esc>1
-inoremap tg gT
-vnoremap tg gT
-nnoremap tg gT
 nnoremap <leader><leader> :wq
 inoremap <leader><leader> <Esc>:wq
 vnoremap <leader><leader> <Esc>:wq
 nnoremap zm zM
-nnoremap ; :call AppendSemicolon()
-nnoremap j k
-nnoremap k j
-"nnoremap :w :wa 
-"nmap :W :w
+nnoremap <C-Space> <CR>
+
+
+" Arrow key maps
+nnoremap <Up>        <C-W>k
+nnoremap <Down>      <C-W>j
+nnoremap <Left>      <C-W>h
+nnoremap <Right>     <C-W>l
+nnoremap <S-Up>      <C-W>K
+nnoremap <S-Down>    <C-W>J
+nnoremap <S-Left>    <C-W>H
+nnoremap <S-Right>   <C-W>L
+
 command! -nargs=* -complete=command Tabe tabe <args> | :NERDTreeToggle | wincmd l
 
+nnoremap ; :call AppendSemicolon()
 function! AppendSemicolon()
     if getline('.') !~ ';$'
         execute "normal A;"
@@ -97,6 +97,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <silent> > :tabn
 nnoremap <silent> < :tabp
+nnoremap <C-Space> :NERDTreeMapCustomOpen
 
 
 " Key mappings (ALE)
@@ -129,7 +130,7 @@ Plugin 'preservim/nerdcommenter'
 Plugin 'preservim/nerdtree'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'dense-analysis/ale'
-
+Plugin 'tibabit/vim-templates'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
