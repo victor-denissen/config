@@ -3,6 +3,8 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+export PATH="/nfs/homes/vdenisse/.local/bin:$PATH"
+export PATH="/nfs/homes/vdenisse/.nvim-linux64/bin:$PATH"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -142,6 +144,7 @@ tere() {
 alias cppinit="mkdir src; cd src; mkdir ClassImplements ClassHeaders;cd .."
 
 alias gdb="gdb -x .gdbinit"
+alias vim="nvim"
 alias clear="clear;pwd;ls"
 
 alias francinette=/nfs/homes/vdenisse/francinette/tester.sh
