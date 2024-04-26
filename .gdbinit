@@ -9,6 +9,10 @@ set history filename ~/.gdb_history
 set logging on
 set	logging file .gdb.txt
 
+
+define test
+	printf "----------------------------------------"
+end
  
 define par
     set $arr = $arg0

@@ -141,7 +141,7 @@ tere() {
     [ -n "$result" ] && cd -- "$result"
 }
 
-alias cppinit="mkdir src; cd src; mkdir ClassImplements ClassHeaders;cd .."
+alias cppinit="mkdir src; cd src; mkdir ClassImplements ClassHeaders;cd ..;touch src/main.cpp src/main.h"
 
 alias gdb="gdb -x .gdbinit"
 alias vim="nvim"

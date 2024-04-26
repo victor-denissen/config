@@ -1,0 +1,32 @@
+#include "../ClassHeaders/{{FILE}}.hpp"
+#include <iostream>
+
+// Constructor
+{{FILE}}::{{FILE}}()
+{
+	std::cout << "{{FILE}}:\tcreating object\n";
+}
+
+// Copy constructor
+{{FILE}}::{{FILE}}(const {{FILE}}& other)
+{
+	std::cout << "{{FILE}}:\tcopying object\n";
+	*this = other;
+}
+
+// Copy assignment operator overload
+{{FILE}}& {{FILE}}::operator = (const {{FILE}}& other)
+{
+	std::cout << "{{FILE}}:\tcopying object (assignment)\n";
+	if (this != &other)
+	{
+		/* this->_=other._ */
+	}
+	return (*this);
+}
+
+// Destructor
+{{FILE}}::~{{FILE}}(void)
+{
+	std::cout << "{{FILE}}:\tdestroying object\n";
+}
