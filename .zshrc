@@ -148,6 +148,7 @@ alias vim="nvim"
 alias clear="clear;pwd;ls"
 
 alias francinette=/nfs/homes/vdenisse/francinette/tester.sh
+alias lg="lazygit"
 
 alias paco=/nfs/homes/vdenisse/francinette/tester.sh
 alias getlib="rm -rf libft; gcl git@github.com:ace-rake/Libft.git libft ; rm -rf libft/.git"

@@ -1,4 +1,4 @@
-#include "../ClassHeaders/{{FILE}}.hpp"
+#include "{{FILE}}.hpp"
 #include <iostream>
 
 // Constructor
