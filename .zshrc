@@ -126,7 +126,7 @@ stopwatch() {
 alias coll="cd ~/Documents/git_collection"
 alias libft="cd ~/Documents/git_collection/libft"
 alias gnl="cd ~/Documents/git_collection/get_next_line"
-alias printf="cd ~/Documents/git_collection/ft_printf"
+# alias printf="cd ~/Documents/git_collection/ft_printf"
 alias push="cd ~/Documents/git_collection/push_swap"
 alias solong="cd ~/Documents/git_collection/so_long"
 alias pipex="cd ~/Documents/git_collection/pipex"
@@ -152,3 +152,4 @@ alias lg="lazygit"
 
 alias paco=/nfs/homes/vdenisse/francinette/tester.sh
 alias getlib="rm -rf libft; gcl git@github.com:ace-rake/Libft.git libft ; rm -rf libft/.git"
+export PATH=/nfs/homes/vdenisse/.nvim-linux64/bin:/nfs/homes/vdenisse/.local/bin:/home/vdenisse/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/vdenise/.local/bin

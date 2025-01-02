@@ -14,7 +14,7 @@ return require('packer').startup(function(use)
 			--- Uncomment the two plugins below if you want to manage the language servers from neovim
 			{'williamboman/mason.nvim'},
 			{'williamboman/mason-lspconfig.nvim'},
-
+	
 			{'neovim/nvim-lspconfig'},
 			{'hrsh7th/nvim-cmp'},
 			{'hrsh7th/cmp-nvim-lsp'},
@@ -29,8 +29,8 @@ return require('packer').startup(function(use)
 		},
 	}
 	use "terrortylor/nvim-comment"
-
-
+	
+	
 	use {
 		'nvim-telescope/telescope.nvim', tag = '0.1.6',
 		-- or                            , branch = '0.1.x',
@@ -66,6 +66,7 @@ return require('packer').startup(function(use)
 			require("telescope").load_extension("lazygit")
 		end,
 	})
+
 	-- nvim v0.7.2
 	-- use {
 	-- 	'dense-analysis/ale',

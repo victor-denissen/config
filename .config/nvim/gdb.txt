@@ -1,0 +1,9 @@
+Warning: 'set logging off', an alias for the command 'set logging enabled', is deprecated.
+Use 'set logging enabled off'.
+
+Reading symbols from lazygit...
+(No debugging symbols found in lazygit)
+.gdbinit: No such file or directory.
+Quit
+
+quit
