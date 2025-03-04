@@ -5,6 +5,7 @@
 export ZSH="$HOME/.oh-my-zsh"
 export PATH="/nfs/homes/vdenisse/.local/bin:$PATH"
 export PATH="/nfs/homes/vdenisse/.nvim-linux64/bin:$PATH"
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -152,4 +153,3 @@ alias lg="lazygit"
 
 alias paco=/nfs/homes/vdenisse/francinette/tester.sh
 alias getlib="rm -rf libft; gcl git@github.com:ace-rake/Libft.git libft ; rm -rf libft/.git"
-export PATH=/nfs/homes/vdenisse/.nvim-linux64/bin:/nfs/homes/vdenisse/.local/bin:/home/vdenisse/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/vdenise/.local/bin
