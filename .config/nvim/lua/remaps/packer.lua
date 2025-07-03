@@ -4,78 +4,78 @@
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
-	-- Packer can manage itself
-	use 'wbthomason/packer.nvim'
+    -- Packer can manage itself
+    use 'wbthomason/packer.nvim'
 
-	use {
-		'VonHeikemen/lsp-zero.nvim',
-		branch = 'v3.x',
-		requires = {
-			--- Uncomment the two plugins below if you want to manage the language servers from neovim
-			{'williamboman/mason.nvim'},
-			{'williamboman/mason-lspconfig.nvim'},
+    use {
+        'VonHeikemen/lsp-zero.nvim',
+        branch = 'v3.x',
+        requires = {
+            --- Uncomment the two plugins below if you want to manage the language servers from neovim
+            {'williamboman/mason.nvim'},
+            {'williamboman/mason-lspconfig.nvim'},
 
-			{'neovim/nvim-lspconfig'},
-			{'hrsh7th/nvim-cmp'},
-			{'hrsh7th/cmp-nvim-lsp'},
-			{'L3MON4D3/LuaSnip'},
-		}
-	}
+            {'neovim/nvim-lspconfig'},
+            {'hrsh7th/nvim-cmp'},
+            {'hrsh7th/cmp-nvim-lsp'},
+            {'L3MON4D3/LuaSnip'},
+        }
+    }
 
-	use {
-		'nvim-tree/nvim-tree.lua',
-		requires = {
-			'nvim-tree/nvim-web-devicons', -- optional
-		},
-	}
-	use "terrortylor/nvim-comment"
+    use {
+        'nvim-tree/nvim-tree.lua',
+        requires = {
+            'nvim-tree/nvim-web-devicons', -- optional
+        },
+    }
+    use "terrortylor/nvim-comment"
 
 
-	use {
-		'nvim-telescope/telescope.nvim', tag = '0.1.6',
-		-- or                            , branch = '0.1.x',
-		requires = { {'nvim-lua/plenary.nvim'} }
-	}
-	use {
-		'andymass/vim-matchup',
-		setup = function()
-			-- may set any options here
-			vim.g.matchup_matchparen_offscreen = { method = "popup" }
-		end
-	}
-	use {
-		"windwp/nvim-autopairs",
-		event = "InsertEnter",
-		config = function()
-			require("nvim-autopairs").setup {}
-		end
-	}
-	use {
-		'nvim-treesitter/nvim-treesitter',
-		run = ':TSUpdate'
-	}
-	use 'tibabit/vim-templates'
-	-- nvim v0.7.2
-	use{
-		"kdheepak/lazygit.nvim",
-		requires = {
-			"nvim-telescope/telescope.nvim",
-			"nvim-lua/plenary.nvim",
-		},
-		config = function()
-			require("telescope").load_extension("lazygit")
-		end,
-	}
-	use({
-		"windwp/nvim-ts-autotag",
-		config = function()
-			require('nvim-ts-autotag').setup({
-				opts = {
-					enable_close = true, -- Auto close tags
-					enable_rename = true, -- Auto rename pairs of tags
-					enable_close_on_slash = false -- Auto close on trailing </
-				},
-				per_filetype = {
+    use {
+        'nvim-telescope/telescope.nvim', tag = '0.1.6',
+        -- or                            , branch = '0.1.x',
+        requires = { {'nvim-lua/plenary.nvim'} }
+    }
+    use {
+        'andymass/vim-matchup',
+        setup = function()
+            -- may set any options here
+            vim.g.matchup_matchparen_offscreen = { method = "popup" }
+        end
+    }
+    use {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        config = function()
+            require("nvim-autopairs").setup {}
+        end
+    }
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate'
+    }
+    use 'tibabit/vim-templates'
+    -- nvim v0.7.2
+    use{
+        "kdheepak/lazygit.nvim",
+        requires = {
+            "nvim-telescope/telescope.nvim",
+            "nvim-lua/plenary.nvim",
+        },
+        config = function()
+            require("telescope").load_extension("lazygit")
+        end,
+    }
+    use({
+        "windwp/nvim-ts-autotag",
+        config = function()
+            require('nvim-ts-autotag').setup({
+                opts = {
+                    enable_close = true, -- Auto close tags
+                    enable_rename = true, -- Auto rename pairs of tags
+                    enable_close_on_slash = false -- Auto close on trailing </
+                },
+                per_filetype = {
                     ["html"] = {
                         enable_close = false
                     }
@@ -121,9 +121,12 @@ return require('packer').startup(function(use)
             }
         end
     }
-
-
-
-	-- Some django specific plug ins
-	use 'neovim/nvim-lspconfig'
+    use {
+        "folke/which-key.nvim",
+        config = function()
+            require("which-key").setup {}
+        end
+    }
+    -- Some django specific plug ins
+    use 'neovim/nvim-lspconfig'
 end)
