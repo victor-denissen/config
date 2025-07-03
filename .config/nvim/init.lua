@@ -9,6 +9,8 @@ vim.opt.autoindent = true   -- Copy indent from current line
 vim.opt.list = true
 vim.opt.listchars = { tab = "»·", trail = "·", extends = ">", precedes = "<" }
 vim.opt.scrolloff = 15
+vim.opt.guifont = "HeavyData Nerd Font:h14"
+
 
 -- Show a vertical line at column 79
 vim.opt.colorcolumn = "79"
@@ -24,6 +26,7 @@ vim.wo.relativenumber = true
 -- Folds
 -- Set foldmethod to syntax
 vim.api.nvim_command('set foldmethod=syntax')
+
 
 -- Set foldlevelstart to 10
 vim.api.nvim_command('set foldlevelstart=10')

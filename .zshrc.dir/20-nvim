@@ -1,4 +1,3 @@
-
 v() {
   if [ $# -eq 0 ]; then
     local session_dir=$NVIM_SESSION_DIR
@@ -39,6 +38,21 @@ v() {
     nvim "$@"
   fi
 }
+
+vo() {
+    local session_dir=$NVIM_SESSION_DIR
+
+    # Check session directory exists first
+    if [ -d "$session_dir" ]; then
+        if [ -e "$session_dir"/old.vim ]; then
+            local old_session="$session_dir"/old.vim
+            nvim -S "${old_session}"
+        else
+            echo "No old.vim session available"
+        fi
+    fi
+}
+
 delete_nvim_session() {
   local session_dir="${NVIM_SESSION_DIR:-$HOME/.config/nvim/sessions}"
   local session_files=()

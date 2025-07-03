@@ -3,3 +3,4 @@ alias getlib="rm -rf libft; gcl git@github.com:ace-rake/Libft.git libft ; rm -rf
 alias c="python3 ~/calendar/calendar_cli.py"
 alias clear="clear;pwd;ls"
 alias config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+alias lgconfig='GIT_DIR=$HOME/.dotfiles GIT_WORK_TREE=$HOME lazygit'

@@ -2,14 +2,6 @@ alias lg="lazygit"
 alias black="black --line-length=79"
 alias vgdb="valgrind --vgdb-error=1"
 alias gdb="gdb -x .gdbinit"
-
-
-
-tere() {
-	local result=$(~/tere/tere "$@")
-    [ -n "$result" ] && cd -- "$result"
-}
-alias t="tere --map Enter:ChangeDirAndExit --map 0:Exit"
-
 alias p="python3"
+
 alias s="p /home/ratchet/Documents/scripts/intra_utils/script_hub.py"
