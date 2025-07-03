@@ -8,5 +8,3 @@ vim.g.lazygit_use_custom_config_file_path = 0 -- config file path is evaluated i
 vim.g.lazygit_config_file_path = '' -- custom config file path
 -- OR
 vim.g.lazygit_config_file_path = {} -- table of custom config file paths
--- Setup mapping to call :LazyGit
-vim.api.nvim_set_keymap('n', '<leader>gg', ':LazyGit<CR>', {silent = true})

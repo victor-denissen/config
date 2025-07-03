@@ -10,15 +10,28 @@ set history filename ~/.gdb_history
 set	logging file .gdb.txt
 
 
-define test
-	printf "----------------------------------------"
+define vgdb
+    target remote | vgdb
 end
- 
+
 define par
     set $arr = $arg0
     set $iter = 0
     while $arr[$iter] != 0x0
         print $arr[$iter]
+        set $iter = $iter + 1
+    end
+end
+document par
+print array
+arg0 = array;
+end
+
+define parp
+    set $arr = $arg0
+    set $iter = 0
+    while $arr[$iter] != 0x0
+        print *$arr[$iter]
         set $iter = $iter + 1
     end
 end

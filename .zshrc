@@ -41,7 +41,7 @@ ZSH_THEME="robbyrussell" # set by `omz`
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -106,6 +106,21 @@ source $ZSH/oh-my-zsh.sh
 # directory where you created the repo above.
 alias config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
+function cat_fact_loop() {
+  while true; do
+    local fact=$(curl -s https://catfact.ninja/fact | jq -r '.fact' 2>/dev/null)
+    fact=${fact:-"Cats can rotate their ears 180 degrees."}
+    print -Pn "\e]0;$fact\a"
+    sleep 60  # 1 minute = 60 seconds
+  done
+}
+
+# Only start the loop if it's not already running
+if [[ -z "$CAT_FACT_LOOP_STARTED" ]]; then
+  export CAT_FACT_LOOP_STARTED=1
+  cat_fact_loop &!
+fi
+
 
 countdown() {
     start="$(( $(date '+%s') + $1))"
@@ -136,20 +151,126 @@ alias mini="cd ~/Documents/git_collection/minishell"
 alias cb="cd ~/Documents/git_collection/Cub3d"
 alias cpp="cd ~/Documents/git_collection/cpp"
 alias t="tere --map Enter:ChangeDirAndExit --map 0:Exit"
+alias p="python3"
+alias s="p /home/ratchet/Documents/scripts/intra_utils/script_hub.py"
 
 tere() {
 	local result=$(~/tere/tere "$@")
     [ -n "$result" ] && cd -- "$result"
 }
 
+alias c="python3 ~/calendar/calendar_cli.py"
+alias docker_nuke="docker stop $(docker ps -q) && docker rm $(docker ps -aq) && docker rmi -f $(docker images -q) && docker volume rm -f $(docker volume ls -q) && docker system prune -a --volumes -f"
+
 alias cppinit="mkdir src; cd src; mkdir ClassImplements ClassHeaders;cd ..;touch src/main.cpp src/main.h"
 
 alias gdb="gdb -x .gdbinit"
-alias vim="nvim"
+
+NVIM_SESSION_DIR=$HOME'/.local/share/nvim/sessions/'
+export NVIM_SESSION_DIR
+v() {
+  if [ $# -eq 0 ]; then
+    local session_dir=$NVIM_SESSION_DIR
+    local session_files=()
+
+    # Check session directory exists first
+    if [ -d "$session_dir" ]; then
+      for f in "$session_dir"/*.vim; do
+        [[ -e "$f" ]] && session_files+=("$f")
+      done
+    fi
+
+    if [ ${#session_files[@]} -eq 0 ]; then
+      nvim .
+      return
+    fi
+
+    echo "Available sessions:"
+    local i=1
+    local choices=()
+    for file in "${session_files[@]}"; do
+      local name=$(basename "$file" .vim)
+      echo "  [$i] $name"
+      choices+=("$file")
+      ((i++))
+    done
+
+    echo "  [0] None (just open nvim .)"
+    read "?Choose a session: " choice
+
+    if [[ "$choice" =~ ^[0-9]+$ ]] && [ "$choice" -ge 1 ] && [ "$choice" -le ${#choices[@]} ] | true; then
+      # print "choice num: ${choice}"
+      # print "choices num: ${choices}"
+      # print "choice val: ${choices[$((choice))]}"
+      nvim -S "${choices[$((choice))]}"
+    else
+      echo "Opening without session..."
+      nvim .
+    fi
+  else
+    nvim "$@"
+  fi
+}
+delete_nvim_session() {
+  local session_dir="${NVIM_SESSION_DIR:-$HOME/.config/nvim/sessions}"
+  local session_files=()
+
+  if [ ! -d "$session_dir" ]; then
+    echo "No session directory found at $session_dir"
+    return
+  fi
+
+  for f in "$session_dir"/*.vim; do
+    [[ -e "$f" ]] && session_files+=("$f")
+  done
+
+  if [ ${#session_files[@]} -eq 0 ]; then
+    echo "No sessions to delete."
+    return
+  fi
+
+  echo "Available sessions to delete:"
+  local i=1
+  local choices=()
+  for file in "${session_files[@]}"; do
+    local name=$(basename "$file" .vim)
+    echo "  [$i] $name"
+    choices+=("$file")
+    ((i++))
+  done
+
+  echo "  [0] Cancel"
+  read "?Choose a session to delete: " choice
+
+  if [[ "$choice" =~ ^[0-9]+$ ]] && [ "$choice" -ge 1 ] && [ "$choice" -le ${#choices[@]} ]; then
+    local to_delete="${choices[$((choice))]}"
+    echo "Deleting: $(basename "$to_delete")"
+    rm -f -- "$to_delete"
+  else
+    echo "Cancelled."
+  fi
+}
+alias dvs="delete_nvim_session"
+
+
+
 alias clear="clear;pwd;ls"
+# alias lckill="sudo kill $(sudo lsof -ti:8000)"
+alias dup="docker compose up -d"
+alias down="docker compose down"
+alias dre="docker compose build --no-cache"
+alias dlog="docker compose logs -f"
 
 alias francinette=/nfs/homes/vdenisse/francinette/tester.sh
 alias lg="lazygit"
+alias black="black --line-length=79"
+alias vgdb="valgrind --vgdb-error=1"
 
 alias paco=/nfs/homes/vdenisse/francinette/tester.sh
 alias getlib="rm -rf libft; gcl git@github.com:ace-rake/Libft.git libft ; rm -rf libft/.git"
+# preexec() { sleep 1; }
+
+# Created by `pipx` on 2025-03-14 09:12:13
+export PATH="$PATH:/home/ratchet/.local/bin"
+USER=ratchet
+export USER
