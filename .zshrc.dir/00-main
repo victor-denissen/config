@@ -1,0 +1,5 @@
+current_file="${(%):-%N}"
+
+for file in ~/.zshrc.dir/*(.N); do
+    [[ "$file" != "$current_file" ]] && source "$file"
+done

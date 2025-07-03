@@ -1,0 +1,81 @@
+
+v() {
+  if [ $# -eq 0 ]; then
+    local session_dir=$NVIM_SESSION_DIR
+    local session_files=()
+
+    # Check session directory exists first
+    if [ -d "$session_dir" ]; then
+      for f in "$session_dir"/*.vim; do
+        [[ -e "$f" ]] && session_files+=("$f")
+      done
+    fi
+
+    if [ ${#session_files[@]} -eq 0 ]; then
+      nvim .
+      return
+    fi
+
+    echo "Available sessions:"
+    local i=1
+    local choices=()
+    for file in "${session_files[@]}"; do
+      local name=$(basename "$file" .vim)
+      echo "  [$i] $name"
+      choices+=("$file")
+      ((i++))
+    done
+
+    echo "  [0] None (just open nvim .)"
+    read "?Choose a session: " choice
+
+    if [[ "$choice" =~ ^[0-9]+$ ]] && [ "$choice" -ge 1 ] && [ "$choice" -le ${#choices[@]} ] | true; then
+      nvim -S "${choices[$((choice))]}"
+    else
+      echo "Opening without session..."
+      nvim .
+    fi
+  else
+    nvim "$@"
+  fi
+}
+delete_nvim_session() {
+  local session_dir="${NVIM_SESSION_DIR:-$HOME/.config/nvim/sessions}"
+  local session_files=()
+
+  if [ ! -d "$session_dir" ]; then
+    echo "No session directory found at $session_dir"
+    return
+  fi
+
+  for f in "$session_dir"/*.vim; do
+    [[ -e "$f" ]] && session_files+=("$f")
+  done
+
+  if [ ${#session_files[@]} -eq 0 ]; then
+    echo "No sessions to delete."
+    return
+  fi
+
+  echo "Available sessions to delete:"
+  local i=1
+  local choices=()
+  for file in "${session_files[@]}"; do
+    local name=$(basename "$file" .vim)
+    echo "  [$i] $name"
+    choices+=("$file")
+    ((i++))
+  done
+
+  echo "  [0] Cancel"
+  read "?Choose a session to delete: " choice
+
+  if [[ "$choice" =~ ^[0-9]+$ ]] && [ "$choice" -ge 1 ] && [ "$choice" -le ${#choices[@]} ]; then
+    local to_delete="${choices[$((choice))]}"
+    echo "Deleting: $(basename "$to_delete")"
+    rm -f -- "$to_delete"
+  else
+    echo "Cancelled."
+  fi
+}
+alias dvs="delete_nvim_session"

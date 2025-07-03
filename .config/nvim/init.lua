@@ -95,3 +95,9 @@ vim.api.nvim_create_autocmd("User", {
   end,
 })
 
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = { "*.zsh", "*.zshrc", "*.zshenv", "*.zshrc.dir/*" },
+  callback = function()
+    vim.bo.filetype = "zsh"
+  end,
+})

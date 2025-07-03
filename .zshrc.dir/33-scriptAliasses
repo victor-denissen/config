@@ -1,0 +1,5 @@
+alias cppinit="mkdir src; cd src; mkdir ClassImplements ClassHeaders;cd ..;touch src/main.cpp src/main.h"
+alias getlib="rm -rf libft; gcl git@github.com:ace-rake/Libft.git libft ; rm -rf libft/.git"
+alias c="python3 ~/calendar/calendar_cli.py"
+alias clear="clear;pwd;ls"
+alias config="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"

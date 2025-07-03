@@ -1,0 +1,5 @@
+alias docker_nuke="docker stop $(docker ps -q) && docker rm $(docker ps -aq) && docker rmi -f $(docker images -q) && docker volume rm -f $(docker volume ls -q) && docker system prune -a --volumes -f"
+alias dup="docker compose up -d"
+alias down="docker compose down"
+alias dre="docker compose build --no-cache"
+alias dlog="docker compose logs -f"

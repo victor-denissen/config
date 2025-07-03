@@ -1,0 +1,14 @@
+function cat_fact_loop() {
+  while true; do
+    local fact=$(curl -s https://catfact.ninja/fact | jq -r '.fact' 2>/dev/null)
+    fact=${fact:-"Cats can rotate their ears 180 degrees."}
+    print -Pn "\e]0;$fact\a"
+    sleep 60  # 1 minute = 60 seconds
+  done
+}
+
+# Only start the loop if it's not already running
+if [[ -z "$CAT_FACT_LOOP_STARTED" ]]; then
+  export CAT_FACT_LOOP_STARTED=1
+  cat_fact_loop &!
+fi
