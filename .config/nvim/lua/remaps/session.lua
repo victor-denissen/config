@@ -18,6 +18,7 @@ vim.api.nvim_create_user_command("CustomSessionQuit", function()
         require("nvim-tree.api").tree.close()
     end
     vim.cmd("mksession! " .. vim.fn.fnameescape(session_path))
+    vim.cmd('wa')
     vim.cmd("quitall")
 end, {})
 
