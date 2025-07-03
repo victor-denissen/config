@@ -34,12 +34,6 @@ vim.api.nvim_set_keymap('n', '<leader>o', ":put _<CR>", { noremap = true, silent
 vim.api.nvim_set_keymap('n', '<leader>O', ":put! _<CR>", { noremap = true, silent = true})
 
 
--- Remap <leader>f/F<key> to go into insert mode after found symbol
-vim.keymap.set('n', '<leader>f', function()
-  local char = vim.fn.getcharstr()
-  vim.api.nvim_feedkeys('f' .. char .. 'a', 'n', true)
-end, { desc = "Jump to character and insert" })
-
 function ToggleCenteredCursor()
   if centered_mode then
     -- turn off centering
