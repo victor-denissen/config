@@ -19,5 +19,5 @@ vim.keymap.set("n", "<leader>gr", function()
     -- Stealth mode: no :copen
   end)
 end, { desc = "LSP: References (silent)" })
-vim.keymap.set("n", "<leader>n", ":cnext<cr>", opts)
-vim.keymap.set("n", "<leader>p", ":cprev<cr>", opts)
+vim.keymap.set("n", "<leader>gn", ":cnext<cr>", { desc='Go to next reference' })
+vim.keymap.set("n", "<leader>gp", ":cprev<cr>", { desc='Go to prev reference' })

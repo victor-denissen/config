@@ -2,6 +2,8 @@ vim.g.mapleader = " "
 vim.g.maplocglleader = " "
 
 
+
+
 -- Navigate between panes using Ctrl+hjkl when in normal mode
 vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', { noremap = true, silent = true })
@@ -22,16 +24,14 @@ vim.api.nvim_set_keymap('i', 'ok', '<Esc>:wa<CR>', { noremap = true, silent = tr
 -- Remap '<leader>q' to close current file
 vim.api.nvim_set_keymap('n', '<leader>q', ':q<CR>', { noremap = true, silent = true})
 
--- Remap '<leader>w' to save all files
-vim.api.nvim_set_keymap('n', '<leader>w', ':w<CR>', { noremap = true, silent = true})
 
 -- Remap 'TT' to initiate template
-vim.api.nvim_set_keymap('n', 'TT', ":TemplateInit<CR>", { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', 'TT', ":TemplateInit<CR>", { noremap = true, silent = true}) -- this a comment
 
 
 -- Remap <leader>o to create ne line without going into insert mode
-vim.api.nvim_set_keymap('n', '<leader>o', ":put _<CR>", { noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>O', ":put! _<CR>", { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>o', ":put _<CR>", { noremap = true, silent = true, desc='New line below'})
+vim.api.nvim_set_keymap('n', '<leader>O', ":put! _<CR>", { noremap = true, silent = true, desc='New line above'})
 
 
 function ToggleCenteredCursor()

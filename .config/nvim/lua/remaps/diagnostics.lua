@@ -1,7 +1,7 @@
 -- Diagnostics shortcuts
 vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, { desc='Go to next diagnostic' })
+vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, { desc='Go to next diagnostic' })
 
 
 local state_file = vim.fn.stdpath('config') .. '/.states/diagnostics_toggle_state'

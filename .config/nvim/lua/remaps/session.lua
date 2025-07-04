@@ -20,7 +20,7 @@ vim.api.nvim_create_user_command("CustomSessionQuit", function()
     vim.cmd("mksession! " .. vim.fn.fnameescape(session_path))
     vim.cmd('wa')
     vim.cmd("quitall")
-end, {})
+end, { desc='Quit this session and save it in old.vim.' })
 
 -- Save and quit, saving session to 'end.vim'
 vim.keymap.set("n", "<leader>sq", ":CustomSessionQuit<cr>", opts)
@@ -44,7 +44,7 @@ vim.api.nvim_create_user_command("CustomSessionCreate", function()
             end
         end
     end)
-end, {})
+end, { desc='Create a save of current session' })
 
 -- Map for custom session
 vim.keymap.set("n", "<leader>ss", ":CustomSessionCreate<cr>", opts)
