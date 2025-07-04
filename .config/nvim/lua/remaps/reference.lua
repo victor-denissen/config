@@ -21,3 +21,10 @@ vim.keymap.set("n", "<leader>gr", function()
 end, { desc = "LSP: References (silent)" })
 vim.keymap.set("n", "<leader>gn", ":cnext<cr>", { desc='Go to next reference' })
 vim.keymap.set("n", "<leader>gp", ":cprev<cr>", { desc='Go to prev reference' })
+
+-- whichkey.lua
+local wk = require("which-key")
+
+wk.add({
+    { "<leader>g", group='Reference'}
+})

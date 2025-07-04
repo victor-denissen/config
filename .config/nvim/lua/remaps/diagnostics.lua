@@ -3,6 +3,12 @@ vim.keymap.set("n", "gl", vim.diagnostic.open_float, opts)
 vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, { desc='Go to next diagnostic' })
 vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, { desc='Go to next diagnostic' })
 
+local wk = require("which-key")
+
+wk.add({
+    { "<leader>d", group='Diagnostics'}
+})
+
 
 local state_file = vim.fn.stdpath('config') .. '/.states/diagnostics_toggle_state'
 
@@ -43,4 +49,4 @@ end
 _G.diagnostics_enabled = load_state()
 
 -- 🔧 Keybinding
-vim.keymap.set("n", "<leader>td", toggle_diagnostics, { noremap = true, silent = true, desc = "Toggle all diagnostics" })
+vim.keymap.set("n", "<leader>dt", toggle_diagnostics, { noremap = true, silent = true, desc = "Toggle all diagnostics" })

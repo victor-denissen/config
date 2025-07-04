@@ -9,10 +9,10 @@
 --   pcall(vim.keymap.del, 'n', key)
 -- end
 -- Global
-vim.keymap.set("n", "<leader>mm", "<cmd>Neominimap Toggle<cr>", { desc = "Toggle global minimap" })
-vim.keymap.set("n", "<leader>mo", "<cmd>Neominimap Enable<cr>",     { desc = "Enable global minimap" })
-vim.keymap.set("n", "<leader>mc", "<cmd>Neominimap Disable<cr>",    { desc = "Disable global minimap" })
-vim.keymap.set("n", "<leader>mr", "<cmd>Neominimap Refresh<cr>",{ desc = "Refresh global minimap" })
+vim.keymap.set("n", "<leader>mgm", "<cmd>Neominimap Toggle<cr>", { desc = "Toggle global minimap" })
+vim.keymap.set("n", "<leader>mgo", "<cmd>Neominimap Enable<cr>",     { desc = "Enable global minimap" })
+vim.keymap.set("n", "<leader>mgc", "<cmd>Neominimap Disable<cr>",    { desc = "Disable global minimap" })
+vim.keymap.set("n", "<leader>mgr", "<cmd>Neominimap Refresh<cr>",{ desc = "Refresh global minimap" })
 
         -- Window-specific
 vim.keymap.set("n", "<leader>mwt", "<cmd>Neominimap WinToggle<cr>", { desc = "Toggle minimap for current window" })
@@ -36,3 +36,14 @@ vim.keymap.set("n", "<leader>mbc", "<cmd>Neominimap bufOff<cr>",    { desc = "Di
 vim.keymap.set("n", "<leader>mf", "<cmd>Neominimap focus<cr>",       { desc = "Focus on minimap" })
 vim.keymap.set("n", "<leader>mu", "<cmd>Neominimap unfocus<cr>",     { desc = "Unfocus minimap" })
 vim.keymap.set("n", "<leader>ms", "<cmd>Neominimap toggleFocus<cr>", { desc = "Switch focus on minimap" })
+
+-- whichkey.lua
+local wk = require("which-key")
+
+wk.add({
+    { "<leader>m", group='Minimap'},
+    { "<leader>mg", group='Minimap Global'},
+    { "<leader>mw", group='Minimap Window'},
+    { "<leader>mt", group='Minimap Tab'},
+    { "<leader>mb", group='Minimap Buffer'},
+})

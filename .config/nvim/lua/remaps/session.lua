@@ -48,3 +48,9 @@ end, { desc='Create a save of current session' })
 
 -- Map for custom session
 vim.keymap.set("n", "<leader>ss", ":CustomSessionCreate<cr>", opts)
+-- whichkey.lua
+local wk = require("which-key")
+
+wk.add({
+    { "<leader>s", group='Session'},
+})
