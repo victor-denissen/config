@@ -22,7 +22,15 @@ vim.api.nvim_set_keymap('i', 'ij', '<Esc>:wa<CR>', { noremap = true, silent = tr
 vim.api.nvim_set_keymap('i', 'ok', '<Esc>:wa<CR>', { noremap = true, silent = true })
 
 -- Remap '<leader>q' to close current file
-vim.api.nvim_set_keymap('n', '<leader>q', ':q<CR>', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>qq', ':q<CR>', { noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>qa', ':qa<CR>', { noremap = true, silent = true})
+
+-- whichkey.lua
+local wk = require("which-key")
+
+wk.add({
+    { "<leader>q", group='Quit File Options'}
+})
 
 
 -- Remap 'TT' to initiate template
@@ -58,4 +66,3 @@ vim.keymap.set("n", "zz", ToggleCenteredCursor, { desc = "Toggle Centered Cursor
 vim.keymap.set("n", "<leader>cws", function()
   vim.cmd([[%s/\s\+$//e]])
 end, { desc = "Clear all trailing whitespace" })
-

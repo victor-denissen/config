@@ -3,5 +3,7 @@ alias black="black --line-length=79"
 alias vgdb="valgrind --vgdb-error=1"
 alias gdb="gdb -x .gdbinit"
 alias p="python3"
+alias pm="python3 manage.py"
+alias mig="python3 manage.py makemigrations; python3 manage.py migrate"
 
 alias s="p /home/ratchet/Documents/scripts/intra_utils/script_hub.py"
